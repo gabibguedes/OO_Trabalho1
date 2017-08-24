@@ -3,9 +3,15 @@
 
 using namespace std;
 
-class Linha:public Matriz{
+class Linha{
+	private:
+		char cell[20][20];
 	public:
 		Linha();
 		~Linha();
+		char getCell(int i, int j);
+		void setCell(char cell, int i, int j);
 		
 };
+
+#endif
