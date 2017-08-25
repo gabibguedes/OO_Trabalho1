@@ -1,8 +1,7 @@
 EP1 - Trabalho de Orientação a Objetos
 
 JOGO DA VIDA
-    
-    Este jogo trata-se de uma matriz com celulas que podem estar vivas ('*') ou 
+Este jogo trata-se de uma matriz com celulas que podem estar vivas ('*') ou 
 mortas ('-'). As celulas vivem e morrem seguindo as regras do jogo, que são:
     
     1a) Se a celula estiver viva e ao seu redor, estiverem menos que duas outras 
@@ -15,10 +14,9 @@ a celula morre de superpopulação;
     
     4a) Se uma celula viva tiver 2 ou 3 vizinhas vivas, ela continua viva.
     
-    Com essas regras a matriz criará formatos e animações, ou, em outros casos,
+Com essas regras a matriz criará formatos e animações, ou, em outros casos,
 permanecerá estatica. Para este trabalho, será feito algumas matrizes especificas, 
 como o GLIDER e a GLIDER GUN, entre outras.
-    
-    O programa deverá ter um menu inicial, onde o usuario dirá qual matriz deverá
+O programa deverá ter um menu inicial, onde o usuario dirá qual matriz deverá
 rodar, e a partir disso, o programa deverá realizar a animação da matriz escolhida 
 em um numero limitado de gerações.
