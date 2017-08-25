@@ -22,3 +22,19 @@ char Matriz::getCell(int i, int j){
 void Matriz::setCell(char cell, int i, int j){
 	this->cell[i][j] = cell;
 }
+
+string Matriz::getNome(){
+	return nome;
+}
+
+void Matriz::setNome(string nome){
+	this->nome = nome;
+}
+
+int Matriz::getGeracoes(){
+	return geracoes;
+}
+
+void Matriz::setGeracoes(int geracoes) {
+	this->geracoes = geracoes;
+}

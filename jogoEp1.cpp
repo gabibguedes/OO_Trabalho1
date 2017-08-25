@@ -1,4 +1,7 @@
 #include <iostream>
+#include <stdio.h>
+#include "matriz.hpp"
+#include "glider.hpp"
 #include "linha.hpp"
 
 //Função para a estrutura do print, numeração horizontal
@@ -59,25 +62,47 @@ int quantVivas(char matriz[20][20], int i, int j){
 }
 
 int main(int argc, char ** argv) {
-	Linha l1;
-	int linha, coluna, geracao = 0, lin, col, vivas;
-	char memoria[20][20], hab[20][20];
+	Linha l;
+	Glider g;
+	int linha, coluna, geracao, times = 0, lin, col, vivas;
+	char memoria[20][20], hab[20][20], m;
 
+	printf("Qual matriz você gostaria de rodar?\n");
+	printf("DIGITE:\n G para a matriz glider\n L para a matriz linha\n");
+	scanf("%c", &m);
 
-	// Print da l1 antes de entrar no while
-	for (linha = 0; linha < 20; linha++) {
-		for (coluna = 0; coluna < 20; coluna++) {
-			memoria[linha][coluna] = l1.getCell(linha,coluna);
-			hab[linha][coluna] = l1.getCell(linha,coluna);
-			cout << hab[linha][coluna] << " ";
-		}
-		cout << endl;
+	if (m < 97) {
+		m = m + 32;
 	}
 
+	while (m != 'g' && m!= 'l') {
+		printf("\nERRO: NÃO ACHAMOS SUA MATRIZ INICIAL.\n\nEscreva novamente: ");
+		scanf("%c", &m);
+	}
+
+	if (m == 'g') {
+		for (linha = 0; linha < 20; linha++) {
+			for (coluna = 0; coluna < 20; coluna++) {
+				hab[linha][coluna] = g.getCell(linha, coluna);
+				memoria[linha][coluna] = g.getCell(linha, coluna);
+				geracao = g.getGeracoes();
+			}
+		}
+	}else if (m == 'l') {
+		for (linha = 0; linha < 20; linha++) {
+			for (coluna = 0; coluna < 20; coluna++) {
+				hab[linha][coluna] = l.getCell(linha, coluna);
+				memoria[linha][coluna] = l.getCell(linha, coluna);
+				geracao = l.getGeracoes();
+			}
+		}
+	}
+
+
 	//Começa o loop que da a vida
-	while (geracao < 10) {
-		geracao++;
-		bordaH(geracao);
+	while (times < geracao) {
+		times++;
+		bordaH(times);
 
 		//Começando a ler a matriz
 		for(linha = 0; linha < 20; linha++){
