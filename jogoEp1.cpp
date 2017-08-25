@@ -60,54 +60,52 @@ int quantVivas(char matriz[20][20], int i, int j){
 
 int main(int argc, char ** argv) {
 	Linha l1;
-	int i, j, g = 0, p, l, vivas;
+	int linha, coluna, geracao = 0, lin, col, vivas;
 	char memoria[20][20], hab[20][20];
 
 
 	// Print da l1 antes de entrar no while
-	for (i = 0; i < 20; i++) {
-		for (j = 0; j < 20; j++) {
-			memoria[i][j] = l1.getCell(i,j);
-			hab[i][j] = l1.getCell(i,j);
-			cout << hab[i][j] << " ";
+	for (linha = 0; linha < 20; linha++) {
+		for (coluna = 0; coluna < 20; coluna++) {
+			memoria[linha][coluna] = l1.getCell(linha,coluna);
+			hab[linha][coluna] = l1.getCell(linha,coluna);
+			cout << hab[linha][coluna] << " ";
 		}
 		cout << endl;
 	}
 
 	//Começa o loop que da a vida
-	while (g < 10) {
-		g++;
-		bordaH(g);
+	while (geracao < 10) {
+		geracao++;
+		bordaH(geracao);
 
 		//Começando a ler a matriz
-		for(i = 0; i < 20; i++){
-			bordaV(i);
+		for(linha = 0; linha < 20; linha++){
+			bordaV(linha);
 
 			//Entra no 2o for para efetuar a real leitura dos elementos
-			for(j = 0; j < 20; j++){
+			for(coluna = 0; coluna < 20; coluna++){
 
-				cout << hab[i][j] << "  ";
+				cout << hab[linha][coluna] << "  ";
 
-				if (i > 0 && i < 19 && j > 0 && j < 19) {
+				if (linha > 0 && linha < 19 && coluna > 0 && coluna < 19) {
 
-					vivas = quantVivas(memoria, i,j);
+					vivas = quantVivas(memoria, linha,coluna);
 
-					if (hab[i][j] == '*' && vivas < 2) {
-						hab[i][j] = '-';
-					}else if (hab[i][j] == '*' && vivas > 3) {
-						hab[i][j] = '-';
-					}else if(hab[i][j] == '-' && vivas == 3){
-						hab[i][j] = '*';
-					}else if(hab[i][j] == '*' && (vivas == 2 || vivas == 3)){
-						hab[i][j] = '*';
+					if (hab[linha][coluna] == '*' && (vivas < 2 || vivas > 3)) {
+						hab[linha][coluna] = '-';
+					}else if(hab[linha][coluna] == '-' && vivas == 3){
+						hab[linha][coluna] = '*';
+					}else if(hab[linha][coluna] == '*' && (vivas == 2 || vivas == 3)){
+						hab[linha][coluna] = '*';
 					}
 				}
 			}
 			cout << endl;
 		}
-		for (p = 0; p < 20; p++) {
-			for (l = 0; l < 20; l++) {
-				memoria[p][l] = hab[p][l];
+		for (lin = 0; lin < 20; lin++) {
+			for (col = 0; col < 20; col++) {
+				memoria[lin][col] = hab[lin][col];
 			}
 		}
 	}
