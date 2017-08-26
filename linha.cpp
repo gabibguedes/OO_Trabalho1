@@ -5,13 +5,13 @@ using namespace std;
 
 Linha::Linha(){
 
-	setCell('*', 10, 9);
-	setCell('*', 10, 10);
-	setCell('*', 10, 11);
+	setCell('o', 10, 9);
+	setCell('o', 10, 10);
+	setCell('o', 10, 11);
 
-	setNome("linha");
-
-	setGeracoes(60);
+	setNome("Linha");
+	setGeracoes(10);
+	setTamanho(20);
 }
 
 Linha::~Linha(){}

@@ -5,9 +5,9 @@ using namespace std;
 
 Matriz::Matriz(){
 	int i, j;
-	for(i=0; i<20; i++){
-		for(j=0; j<20; j++){
-			cell[i][j] = '-';
+	for(i=0; i<40; i++){
+		for(j=0; j<40; j++){
+			cell[i][j] = ' ';
 		}
 	}
 }
@@ -37,4 +37,12 @@ int Matriz::getGeracoes(){
 
 void Matriz::setGeracoes(int geracoes) {
 	this->geracoes = geracoes;
+}
+
+int Matriz::getTamanho(){
+	return tamanho;
+}
+
+void Matriz::setTamanho(int tamanho){
+	this->tamanho = tamanho;
 }

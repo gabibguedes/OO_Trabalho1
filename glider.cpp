@@ -5,15 +5,15 @@ using namespace std;
 
 Glider::Glider(){
 
-    setCell('*', 1, 2);
-    setCell('*', 2, 3);
-    setCell('*', 3, 1);
-    setCell('*', 3, 2);
-    setCell('*', 3, 3);
+    setCell('o', 1, 2);
+    setCell('o', 2, 3);
+    setCell('o', 3, 1);
+    setCell('o', 3, 2);
+    setCell('o', 3, 3);
 
-    setNome("glider");
-
+    setNome("Glider");
     setGeracoes(60);
+    setTamanho(20);
 }
 
 Glider::~Glider(){}
