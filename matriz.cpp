@@ -4,10 +4,10 @@
 using namespace std;
 
 Matriz::Matriz(){
-	int i, j;
-	for(i=0; i<40; i++){
-		for(j=0; j<40; j++){
-			cell[i][j] = ' ';
+	int lin, col;
+	for(lin = 0; lin < 40; lin++){
+		for(col = 0; col < 40; col++){
+			cell[lin][col] = ' ';
 		}
 	}
 }
@@ -15,12 +15,12 @@ Matriz::Matriz(){
 Matriz::~Matriz(){
 }
 
-char Matriz::getCell(int i, int j){
-	return cell[i][j];
+char Matriz::getCell(int lin, int col){
+	return cell[lin][col];
 }
 
-void Matriz::setCell(char cell, int i, int j){
-	this->cell[i][j] = cell;
+void Matriz::setCell(char cell, int lin, int col){
+	this->cell[lin][col] = cell;
 }
 
 string Matriz::getNome(){

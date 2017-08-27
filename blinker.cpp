@@ -1,17 +1,17 @@
 #include <iostream>
-#include "linha.hpp"
+#include "blinker.hpp"
 
 using namespace std;
 
-Linha::Linha(){
+Blinker::Blinker(){
 
 	setCell('o', 10, 9);
 	setCell('o', 10, 10);
 	setCell('o', 10, 11);
 
-	setNome("Linha");
+	setNome("Blinker");
 	setGeracoes(10);
 	setTamanho(20);
 }
 
-Linha::~Linha(){}
+Blinker::~Blinker(){}

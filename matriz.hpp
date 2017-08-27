@@ -14,8 +14,8 @@ class Matriz {
 	public:
 		Matriz();
 		~Matriz();
-		char getCell(int i, int j);
-		void setCell(char cell, int i, int j);
+		char getCell(int linha, int coluna);
+		void setCell(char cell, int linha, int coluna);
 		string getNome();
 		void setNome(string nome);
 		int getGeracoes();
