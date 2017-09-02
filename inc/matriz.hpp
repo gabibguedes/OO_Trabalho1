@@ -7,7 +7,7 @@ using namespace std;
 
 class Matriz {
 	private:
-		char cell[40][40];
+		char cell[100][100];
 		string nome;
 		int geracoes;
 		int tamanho;

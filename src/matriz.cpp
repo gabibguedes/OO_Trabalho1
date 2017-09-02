@@ -5,8 +5,8 @@ using namespace std;
 
 Matriz::Matriz(){
 	int lin, col;
-	for(lin = 0; lin < 40; lin++){
-		for(col = 0; col < 40; col++){
+	for(lin = 0; lin < 100; lin++){
+		for(col = 0; col < 100; col++){
 			cell[lin][col] = ' ';
 		}
 	}

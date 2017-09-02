@@ -7,6 +7,9 @@
 #include "glider.hpp"
 #include "gliderGun.hpp"
 #include <string>
+#include <stdlib.h>
+#include <time.h>
+
 
 void bordaH(int ger, int tam){
 	//Função para as coordenadas, numeração horizontal
@@ -235,4 +238,31 @@ Matriz montaMatriz(){
 	cout << endl;
 
 	return nova;
+}
+
+Matriz montaAleatoria(){
+	Matriz aleatoria;
+	int lin, col, tamanho, num;
+
+	aleatoria.setNome("Aleatoria");
+	aleatoria.setGeracoes(100);
+
+	cout << "Tamanho da matriz: ";
+	scanf("%d", &tamanho);
+	aleatoria.setTamanho(tamanho);
+
+	for (lin = 1; lin < (tamanho-1); lin++) {
+		for (col = 1; col < (tamanho-1); col++) {
+			num = ( rand() % 2 );
+
+			if (num < 1) {
+				aleatoria.setCell('o', lin, col);
+			}else{
+				aleatoria.setCell(' ', lin, col);
+			}
+		}
+	}
+
+
+	return aleatoria;
 }

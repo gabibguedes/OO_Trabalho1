@@ -14,5 +14,7 @@
     Matriz escolheMatriz(char m);
     Matriz f5(Matriz hab);
     Matriz montaMatriz();
+    Matriz montaAleatoria();
+
 
 #endif
