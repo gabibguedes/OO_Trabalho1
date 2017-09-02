@@ -6,12 +6,13 @@
 #include "glider.hpp"
 #include "gliderGun.hpp"
 #include <string>
+#include <unistd.h>
+
 
 void bordaH(int ger, int tam){
 	//Função para as coordenadas, numeração horizontal
 
 	int i;
-
 	cout << endl << "GERAÇÃO "<< ger << endl;
 	cout << "   ";
 	for (i = 0; i < tam; i++) {
@@ -313,34 +314,31 @@ int main(int argc, char ** argv) {
 	memoria = f5(habtat);
 	tamanho = habtat.getTamanho();
 
-	resposta = 's';
+	cout << endl;
+	cout << "Você escolheu: " <<  habtat.getNome() << endl;
+	cout << " - É uma matriz "<<habtat.getTamanho()<<"X"<<habtat.getTamanho()<< endl;
+	cout << " - Possui " << habtat.getGeracoes() << " gerações" << endl;
 
-	while (resposta == 's') {
-		cout << endl;
-		cout << "Você escolheu: " <<  habtat.getNome() << endl;
-		cout << " - É uma matriz "<<habtat.getTamanho()<<"X"<<habtat.getTamanho()<< endl;
-		cout << " - Possui " << habtat.getGeracoes() << " gerações" << endl;
+	cout << "\nDeseja alterar a quantidade de gerações das suas celulas? (S/N) ";
+	scanf(" %c", &resposta);
+	printf("\n");
 
-		cout << "\nDeseja alterar a quantidade de gerações das suas celulas? (S/N) ";
+	while (resposta != 's' && resposta != 'S' && resposta != 'n' && resposta != 'N'){
+		cout << "\n\nERRO: ESCREVA 'S' PARA SIM E 'N' PARA NÃO\n\nTente novamente: ";
 		scanf(" %c", &resposta);
-		printf("\n");
+		cout << endl;
+	}
 
-		while (resposta != 's' && resposta != 'S' && resposta != 'n' && resposta != 'N'){
-			cout << "\n\nERRO: ESCREVA 'S' PARA SIM E 'N' PARA NÃO\n\nTente novamente: ";
-			scanf(" %c", &resposta);
-			cout << endl;
-		}
-
-		if (resposta == 's' || resposta == 'S') {
-			cout << "GERAÇÕES: ";
-			scanf("%d", &geracao);
-			habtat.setGeracoes(geracao);
-		}
+	if (resposta == 's' || resposta == 'S') {
+		cout << "GERAÇÕES: ";
+		scanf("%d", &geracao);
+		habtat.setGeracoes(geracao);
 	}
 
 
 
-	//Começa o loop que da a vida
+
+	//Começa o loop do jogo
 	while (times < habtat.getGeracoes()) {
 		times++;
 		bordaH(times, tamanho);
@@ -372,6 +370,7 @@ int main(int argc, char ** argv) {
 			cout << endl;
 		}
 		memoria = f5(habtat);
+		usleep(250000);
 	}
 
 
