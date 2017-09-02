@@ -161,7 +161,7 @@ Matriz montaMatriz(){
 
 	Matriz nova;
 	int geracao, tamanho, linha, coluna, i;
-	char celula[40][40], resposta = 's';
+	char celula[40][40];
 	char nome[100];
 
 	cout << "Defina os parametros do seu conjunto de celulas:" << endl;
