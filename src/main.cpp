@@ -7,7 +7,27 @@
 #include "blinker.hpp"
 #include "glider.hpp"
 #include "gliderGun.hpp"
-#include "funcoes.hpp"
+
+Matriz escolheMatriz(char m){
+	// Esta função, a partir da letra da resposta do usuario devolve a matriz escolhida
+	Quadrado quadrado;
+	Blinker blinker;
+	Glider glider;
+	GliderGun gun;
+	Matriz habtat;
+
+	if (m == 'q') {
+		habtat = quadrado;
+	}else if (m == 'b') {
+		habtat = blinker;
+	}else if (m == 'g') {
+		habtat = glider;
+	}else if (m == 'u') {
+		habtat = gun;
+	}
+
+	return habtat;
+}
 
 int main(int argc, char ** argv) {
 	Matriz habtat, memoria;
@@ -33,14 +53,14 @@ int main(int argc, char ** argv) {
 	}
 
 	if (m == 'm') {
-		habtat = montaMatriz();
+		habtat.montaMatriz();
 	}else if (m == 'a'){
-		habtat = montaAleatoria();
+		habtat.montaAleatoria();
 	}else{
 		habtat = escolheMatriz(m);
 	}
 
-	memoria = f5(habtat);
+	memoria = habtat;
 	tamanho = habtat.getTamanho();
 
 	cout << endl;
@@ -74,11 +94,11 @@ int main(int argc, char ** argv) {
 	//Começa o loop do jogo
 	while (times < habtat.getGeracoes() && cellVivas > 0) {
 		times++;
-		bordaH(times, tamanho);
+		habtat.printBordaHorizontal(times);
 
 		//Começando a ler a matriz
 		for(linha = 0; linha < tamanho; linha++){
-			bordaV(linha);
+			habtat.printBordaVertical(linha);
 
 			//Entra no 2o for para efetuar a real leitura e print dos elementos
 			for(coluna = 0; coluna < tamanho; coluna++){
@@ -86,7 +106,7 @@ int main(int argc, char ** argv) {
 				cout << habtat.getCell(linha, coluna) << "  ";
 
 				if (linha > 0 && linha < (tamanho-1) && coluna > 0 && coluna < (tamanho-1)) {
-					vivas = quantVivas(memoria, linha,coluna);
+					vivas = memoria.contaVivas(linha,coluna);
 
 					// REGRAS DO JOGO DA VIDA:
 					if (habtat.getCell(linha,coluna) == 'o' && (vivas < 2 || vivas > 3)) {
@@ -115,7 +135,7 @@ int main(int argc, char ** argv) {
 			cout << endl << "Suas celulas morreram." << endl;
 		}
 
-		memoria = f5(habtat);
+		memoria = habtat;
 
 		usleep(250000);
 	}
