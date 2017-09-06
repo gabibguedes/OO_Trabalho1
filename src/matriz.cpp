@@ -3,13 +3,12 @@
 #include <stdlib.h>
 #include "matriz.hpp"
 
-using namespace std;
-
 Matriz::Matriz(){
 	int lin, col;
 	nome = "Celulas mortas";
 	geracoes = 100;
 	tamanho = 20;
+
 	for(lin = 0; lin < 100; lin++){
 		for(col = 0; col < 100; col++){
 			cell[lin][col] = ' ';
@@ -75,12 +74,12 @@ void Matriz::montaMatriz(){
 
 	cout << "Defina os parametros do seu conjunto de celulas:" << endl;
 	cout << "Nome do conjunto: ";
-	scanf("%s", nome);
 	getchar();
+	cin.getline(nome, 100);
 	this->nome = nome;
 
 	cout << "Tamanho da matriz: ";
-	scanf("%d", &tamanho);
+	cin >> tamanho;
 	this->tamanho = tamanho;
 	geracoes = 10;
 
@@ -93,7 +92,7 @@ void Matriz::montaMatriz(){
 	for (linha = 0; linha < tamanho; linha++) {
 		printBordaVertical(linha);
 		for (coluna = 0; coluna < tamanho; coluna++) {
-			scanf(" %c", &cell[linha][coluna]);
+			cin >> cell[linha][coluna];
 			if (cell[linha][coluna] == '-') {
 				cell[linha][coluna] = ' ';
 			}else{
@@ -120,7 +119,7 @@ void Matriz::montaAleatoria(){
 	int lin, col, tamanho, num;
 
 	cout << "Tamanho da matriz: ";
-	scanf("%d", &tamanho);
+	cin >> tamanho;
 	this->tamanho = tamanho;
 	nome = "Aleatoria";
 

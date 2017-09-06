@@ -1,8 +1,6 @@
 #include <iostream>
 #include "blinker.hpp"
 
-using namespace std;
-
 Blinker::Blinker(){
 
 	setCell('o', 10, 9);

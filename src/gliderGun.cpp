@@ -1,8 +1,6 @@
 #include <iostream>
 #include "gliderGun.hpp"
 
-using namespace std;
-
 GliderGun::GliderGun(){
 
     setCell('o',1, 25);

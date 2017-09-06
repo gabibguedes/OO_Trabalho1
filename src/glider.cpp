@@ -1,8 +1,6 @@
 #include <iostream>
 #include "glider.hpp"
 
-using namespace std;
-
 Glider::Glider(){
 
     setCell('o', 1, 2);

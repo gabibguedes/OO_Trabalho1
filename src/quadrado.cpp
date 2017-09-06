@@ -1,8 +1,6 @@
 #include <iostream>
 #include "quadrado.hpp"
 
-using namespace std;
-
 Quadrado::Quadrado(){
 
     setCell('o', 10, 10);

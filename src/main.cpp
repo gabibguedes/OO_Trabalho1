@@ -36,10 +36,12 @@ int main(int argc, char ** argv) {
 
 	// Menu inicial:
 	cout << "Qual conjunto de celulas você gostaria de rodar?" << endl;
-	printf("DIGITE:\n Q para Quadrado\n B para Blinker\n G para Glider\n"
-		" U para Glider Gun\n M para montar seu conjunto de celulas\n A "
-		"para um conjunto aleatorio\n\n");
-	scanf(" %c", &m);
+
+	cout << "DIGITE:\n Q para Quadrado\n B para Blinker\n G para Glider\n";
+	cout << " U para Glider Gun\n M para montar seu conjunto de celulas\n A ";
+	cout << "para um conjunto aleatorio\n" << endl;
+
+	cin >> m;
 	cout << endl;
 
 	if (m < 97) {
@@ -48,7 +50,7 @@ int main(int argc, char ** argv) {
 
 	while (m != 'g' && m != 'b' && m !='u' && m != 'm' && m!= 'q' && m!= 'a') {
 		cout << "\n\nERRO: SEU CONJUNTO INICIAL NÃO FOI ENCONTRADO.\n\nEscreva novamente: ";
-		scanf(" %c", &m);
+		cin >> m;
 		cout << endl;
 	}
 
@@ -69,18 +71,18 @@ int main(int argc, char ** argv) {
 	cout << " - Possui " << habtat.getGeracoes() << " gerações" << endl;
 
 	cout << "\nDeseja alterar a quantidade de gerações das suas celulas? (S/N) ";
-	scanf(" %c", &resposta);
+	cin >> resposta;
 	cout << endl;
 
 	while (resposta != 's' && resposta != 'S' && resposta != 'n' && resposta != 'N'){
 		cout << "\n\nERRO: ESCREVA 'S' PARA SIM E 'N' PARA NÃO\n\nTente novamente: ";
-		scanf(" %c", &resposta);
+		cin >> resposta;
 		cout << endl;
 	}
 
 	if (resposta == 's' || resposta == 'S') {
 		cout << "GERAÇÕES: ";
-		scanf("%d", &geracao);
+		cin >> geracao;
 		habtat.setGeracoes(geracao);
 	}
 
@@ -96,11 +98,9 @@ int main(int argc, char ** argv) {
 		times++;
 		habtat.printBordaHorizontal(times);
 
-		//Começando a ler a matriz
 		for(linha = 0; linha < tamanho; linha++){
 			habtat.printBordaVertical(linha);
 
-			//Entra no 2o for para efetuar a real leitura e print dos elementos
 			for(coluna = 0; coluna < tamanho; coluna++){
 
 				cout << habtat.getCell(linha, coluna) << "  ";
@@ -121,15 +121,7 @@ int main(int argc, char ** argv) {
 			cout << endl;
 		}
 
-		cellVivas = 0;
-
-		for (linha = 0; linha < 40; linha++) {
-			for (coluna = 0; coluna < 40; coluna++) {
-				if (memoria.getCell(linha, coluna) == 'o'){
-					cellVivas++;
-				}
-			}
-		}
+		cellVivas = memoria.contaVivas();
 
 		if (cellVivas == 0) {
 			cout << endl << "Suas celulas morreram." << endl;
