@@ -3,11 +3,11 @@
 
 Glider::Glider(){
 
-    setCell('o', 1, 2);
-    setCell('o', 2, 3);
-    setCell('o', 3, 1);
-    setCell('o', 3, 2);
-    setCell('o', 3, 3);
+    setCelula('o', 1, 2);
+    setCelula('o', 2, 3);
+    setCelula('o', 3, 1);
+    setCelula('o', 3, 2);
+    setCelula('o', 3, 3);
 
     setNome("Glider");
     setGeracoes(60);

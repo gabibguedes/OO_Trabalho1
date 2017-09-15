@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdio.h>
-#include <string>
 #include <unistd.h>
 #include "matriz.hpp"
 #include "quadrado.hpp"
@@ -8,58 +7,59 @@
 #include "glider.hpp"
 #include "gliderGun.hpp"
 
-Matriz escolheMatriz(char m){
-	// Esta função, a partir da letra da resposta do usuario devolve a matriz escolhida
+Matriz escolheMatriz(char letra){
+	// Esta função, a partir da letra da resposta do usuario, devolve a matriz escolhida
 	Quadrado quadrado;
 	Blinker blinker;
 	Glider glider;
 	GliderGun gun;
-	Matriz habtat;
 
-	if (m == 'q') {
-		habtat = quadrado;
-	}else if (m == 'b') {
-		habtat = blinker;
-	}else if (m == 'g') {
-		habtat = glider;
-	}else if (m == 'u') {
-		habtat = gun;
+	if (letra == 'q') {
+		return quadrado;
+	}else if (letra == 'b') {
+		return blinker;
+	}else if (letra == 'g') {
+		return glider;
+	}else{
+		return gun;
 	}
-
-	return habtat;
 }
 
 int main(int argc, char ** argv) {
 	Matriz habtat, memoria;
-	int linha, coluna, geracao, times = 0, vivas, tamanho, cellVivas = 1;
-	char resposta, m;
+	int linha, coluna, geracao, contador = 0, vivas, tamanho, celulasVivas = 1;
+	char resposta;
 
 	// Menu inicial:
 	cout << "Qual conjunto de celulas você gostaria de rodar?" << endl;
 
 	cout << "DIGITE:\n Q para Quadrado\n B para Blinker\n G para Glider\n";
-	cout << " U para Glider Gun\n M para montar seu conjunto de celulas\n A ";
-	cout << "para um conjunto aleatorio\n" << endl;
+	cout << " U para Glider Gun\n D para desenhar seu conjunto de celulas\n A ";
+	cout << "para um conjunto aleatorio\n M para montar seu próprio conjunto\n"
+	<< endl;
 
-	cin >> m;
+	cin >> resposta;
 	cout << endl;
 
-	if (m < 97) {
-		m = m + 32;
+	if (resposta < 97) {
+		resposta = resposta + 32;
 	}
 
-	while (m != 'g' && m != 'b' && m !='u' && m != 'm' && m!= 'q' && m!= 'a') {
+	while (resposta != 'd' && resposta != 'g' && resposta != 'b' && resposta !='u'
+	&& resposta != 'm' && resposta!= 'q' && resposta!= 'a') {
 		cout << "\n\nERRO: SEU CONJUNTO INICIAL NÃO FOI ENCONTRADO.\n\nEscreva novamente: ";
-		cin >> m;
+		cin >> resposta;
 		cout << endl;
 	}
 
-	if (m == 'm') {
+	if (resposta == 'd') {
 		habtat.montaMatriz();
-	}else if (m == 'a'){
+	}else if (resposta == 'a'){
 		habtat.montaAleatoria();
+	}else if(resposta == 'm'){
+		habtat.juntaMatriz();
 	}else{
-		habtat = escolheMatriz(m);
+		habtat = escolheMatriz(resposta);
 	}
 
 	memoria = habtat;
@@ -67,7 +67,7 @@ int main(int argc, char ** argv) {
 
 	cout << endl;
 	cout << "Você escolheu: " <<  habtat.getNome() << endl;
-	cout << " - É uma matriz "<<habtat.getTamanho()<<"X"<<habtat.getTamanho()<< endl;
+	cout << " - É uma matriz "<< habtat.getTamanho() << "X" << habtat.getTamanho() << endl;
 	cout << " - Possui " << habtat.getGeracoes() << " gerações" << endl;
 
 	cout << "\nDeseja alterar a quantidade de gerações das suas celulas? (S/N) ";
@@ -86,7 +86,6 @@ int main(int argc, char ** argv) {
 		habtat.setGeracoes(geracao);
 	}
 
-
 	if (tamanho > 20) {
 		cout << "\n\nOBS.: Maximize sua tela para melhor visualização.\n\n" << endl;
 		sleep(1);
@@ -94,36 +93,36 @@ int main(int argc, char ** argv) {
 
 
 	//Começa o loop do jogo
-	while (times < habtat.getGeracoes() && cellVivas > 0) {
-		times++;
-		habtat.printBordaHorizontal(times);
+	while (contador < habtat.getGeracoes() && celulasVivas > 0) {
+		contador++;
+		habtat.printBordaHorizontal(contador);
 
 		for(linha = 0; linha < tamanho; linha++){
 			habtat.printBordaVertical(linha);
 
 			for(coluna = 0; coluna < tamanho; coluna++){
 
-				cout << habtat.getCell(linha, coluna) << "  ";
+				cout << habtat.getCelula(linha, coluna) << "  ";
 
 				if (linha > 0 && linha < (tamanho-1) && coluna > 0 && coluna < (tamanho-1)) {
 					vivas = memoria.contaVivas(linha,coluna);
 
 					// REGRAS DO JOGO DA VIDA:
-					if (habtat.getCell(linha,coluna) == 'o' && (vivas < 2 || vivas > 3)) {
-						habtat.setCell(' ',linha,coluna);
-					}else if(habtat.getCell(linha,coluna) == ' ' && vivas == 3){
-						habtat.setCell('o',linha,coluna);
-					}else if(habtat.getCell(linha,coluna) == 'o' && (vivas == 2 || vivas == 3)){
-						habtat.setCell('o',linha,coluna);
+					if (habtat.getCelula(linha,coluna) == 'o' && (vivas < 2 || vivas > 3)) {
+						habtat.setCelula(' ',linha,coluna);
+					}else if(habtat.getCelula(linha,coluna) == ' ' && vivas == 3){
+						habtat.setCelula('o',linha,coluna);
+					}else if(habtat.getCelula(linha,coluna) == 'o' && (vivas == 2 || vivas == 3)){
+						habtat.setCelula('o',linha,coluna);
 					}
 				}
 			}
 			cout << endl;
 		}
 
-		cellVivas = memoria.contaVivas();
+		celulasVivas = memoria.contaVivas();
 
-		if (cellVivas == 0) {
+		if (celulasVivas == 0) {
 			cout << endl << "Suas celulas morreram." << endl;
 		}
 
@@ -131,7 +130,6 @@ int main(int argc, char ** argv) {
 
 		usleep(250000);
 	}
-
 
 	return 0;
 }
