@@ -3,6 +3,11 @@
 
 GliderGun::GliderGun(){
 
+    setNome("Glider Gun");
+    setGeracoes(150);
+    setTamanho(40);
+
+    // Definições das coordenadas das celulas vivas da Glider Gun:
     setCelula('o',1, 25);
     setCelula('o',2, 23);
     setCelula('o',2, 25);
@@ -39,11 +44,6 @@ GliderGun::GliderGun(){
     setCelula('o',8, 16);
     setCelula('o',9, 13);
     setCelula('o',9, 14);
-
-    setNome("Glider Gun");
-    setGeracoes(150);
-    setTamanho(40);
-
 }
 
 GliderGun::~GliderGun(){}
