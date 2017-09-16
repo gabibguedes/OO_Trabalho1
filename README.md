@@ -2,6 +2,7 @@ ALUNA: Gabriela Barrozo Guedes
 MATRICULA: 16/0121612
 
 Como jogar:
+
 Após baixar o repositorio, entre na pasta do ep1 pelo terminal e execute os seguintes comandos:
 
     make
@@ -10,7 +11,7 @@ Após baixar o repositorio, entre na pasta do ep1 pelo terminal e execute os seg
 
 Escolha o conjunto de células que deseja rodar ou monte o seu próprio com as alternativas de
 'conjunto aleatório', 'monte seu próprio conjunto' ou 'escrever seu conjunto de células'. Nas
-alternativas ja programadas, tem como opção a Block, a Blinker, a Glider e a Gosper Glider Gun.
+alternativas ja programadas, tem como opções a Block, a Blinker, a Glider e a Gosper Glider Gun.
 
 OBS: EM CASOS DE ESCOLHER O TAMANHO DA MATRIZ DO JOGO, DIGITE APENAS UM NÚMERO. A MATRIZ É QUADRADA,
 DESSA FORMA, O NÚMERO ESCOLHIDO PARA TAMANHO SERÁ TANTO PARA LINHA COMO PARA COLUNA.
