@@ -3,14 +3,14 @@
 #include <stdlib.h>
 #include "matriz.hpp"
 #include "glider.hpp"
-#include "quadrado.hpp"
+#include "block.hpp"
 #include "blinker.hpp"
 
 Matriz::Matriz(){
-	// Toda matriz inicia com todas as celulas mortas
+	// Toda matriz inicia com todas as células mortas
 	int linha, coluna;
 
-	nome = "Celulas mortas";
+	nome = "Células mortas";
 	geracoes = 100;
 	tamanho = 20;
 
@@ -46,6 +46,10 @@ int Matriz::getGeracoes(){
 
 void Matriz::setGeracoes(int geracoes) {
 	this->geracoes = geracoes;
+
+	if (geracoes < 1 || geracoes == '\0') {
+		throw(1);
+	}
 }
 
 int Matriz::getTamanho(){
@@ -56,32 +60,50 @@ void Matriz::setTamanho(int tamanho){
 	this->tamanho = tamanho;
 }
 
-void Matriz::escreveMatriz(){
-	// Este método ajuda o usuario a escrever sua própria matriz do zero,
-	//determinando, uma a uma quais celulas estão vivas e quais estão mortas
-
-	int tamanho, linha, coluna;
-	char celula;
+void Matriz::escolheNome(){
+	// Este método permite ao usuario escolher o nome do conjunto. A função
+	//cin.getline foi utilizada para que o nome da matriz possa ser composto.
 	char nome[100];
 
-	// Definições iniciais do conjunto:
-	cout << "Defina os parametros do seu conjunto de celula:" << endl;
 	cout << "Nome do conjunto: ";
 	getchar();
 	cin.getline(nome, 100);
 	setNome(nome);
+}
 
+void Matriz::escolheTamanho(){
+	// Este método permite ao usuario escolher o tamanho do conjunto
+	int tamanho;
+
+	cout << "(OBS : Escreva somente 1 número para o TAMANHO, pois a matriz é"
+	<< " quadrada, tem o mesmo número para linhas e colunas)"<< endl;
 	cout << "Tamanho da matriz: ";
 	cin >> tamanho;
 	setTamanho(tamanho);
-	setGeracoes(10);
+
+	if(getTamanho() < 1 || tamanho > 100){
+		cout << "ERRO: O JOGO NÃO SUPORTA UMA MATRIZ DESTE TAMANHO." << endl;
+		throw(1);
+	}
+}
+
+void Matriz::escreveMatriz(){
+	// Este método ajuda o usuario a escrever sua própria matriz do zero,
+	//determinando, uma a uma quais células estão vivas e quais estão mortas
+
+	int linha, coluna;
+	char celula;
+
+	// Definições iniciais do conjunto:
+	escolheNome();
+	escolheTamanho();
 
 	cout << endl;
-	cout << "Escreva seu conjunto " << nome << " da seguinte forma: use 'o' para"
-	" celula vivas e '-' para mortas. Separe as celulas com 2 espaços."<< endl;
+	cout << "Escreva seu conjunto " << getNome() << " da seguinte forma: use 'o' para"
+		<<" celulas vivas e '-' para mortas. Separe as celulas com 2 espaços."<< endl;
 	cout << endl;
 
-	//Determinando celulas vivas e mortas:
+	//Determinando células vivas e mortas:
 	printBordaHorizontal();
 	for (linha = 0; linha < tamanho; linha++) {
 		printBordaVertical(linha);
@@ -96,38 +118,29 @@ void Matriz::escreveMatriz(){
 		}
 	}
 
-	cout << endl << "Este é o seu novo conjunto de celulas:"<< endl;
+	cout << endl << "Este é o seu novo conjunto de células:"<< endl;
 
 	printBordaHorizontal();
-	for (linha = 0; linha < tamanho; linha++) {
-		printBordaVertical(linha);
-		for (coluna = 0; coluna < tamanho; coluna++) {
-			cout << getCelula(linha, coluna) << "  ";
-		}
-		cout << endl;
-	}
+	printJogo();
 	cout << endl;
 }
 
 void Matriz::montaAleatoria(){
-	// Neste método, as celulas vivas e mortas são escolhidas aleatoriamente,
+	// Neste método, as células vivas e mortas são escolhidas aleatoriamente,
 	//utilizando a função rand, números aleatórios são escolhidos e dependendo
 	//do número, a celula é dada como viva ou morta.
-	int linha, coluna, tamanho, numero;
+	int linha, coluna, numero;
 
 	// Definição inicial da matriz:
-	cout << "Tamanho da matriz: ";
-	cin >> tamanho;
-	setTamanho(tamanho);
+	escolheTamanho();
 	nome = "Aleatoria";
 
-	for (linha = 1; linha < (tamanho-1); linha++) {
-		for (coluna = 1; coluna < (tamanho-1); coluna++) {
-			// Um número de 0 a 4 é escolhido aleatoriamente
+	for (linha = 1; linha < (getTamanho()-1); linha++) {
+		for (coluna = 1; coluna < (getTamanho()-1); coluna++) {
+			// Um número de 0 a 3 é escolhido aleatoriamente
 			numero = ( rand() % 4 );
-
 			if (numero == 0) {
-				// Quando o número é zero a celula é viva
+				// Quando o número é zero a celula é dada como viva
 				setCelula('o', linha, coluna);
 			}
 		}
@@ -135,21 +148,15 @@ void Matriz::montaAleatoria(){
 
 }
 void Matriz::juntaMatriz() {
-	// Esse método utiliza de alguns conjuntos de celulas ja definidos para juntar
+	// Esse método utiliza de alguns conjuntos de celulas já definidos para juntar
 	//eles em um só jogo, onde a posição e a quantidade de cada um deles é definida
 	//pelo usuario.
-	char resposta = 'a', nome[100];
-	int tamanho, quantidade, i, posicaoX, posicaoY, linha, coluna;
+	char resposta = 'a';
+	int posicaoX, posicaoY;
 
 	//Definição inicial da matriz
-	cout << "Dados da Matriz:\n NOME: ";
-	getchar();
-	cin.getline(nome, 100);
-	setNome(nome);
-
-	cout << " TAMANHO: ";
-	cin >> tamanho;
-	setTamanho(tamanho);
+	escolheNome();
+	escolheTamanho();
 	setGeracoes(60);
 
 	while (resposta != 't') {
@@ -157,7 +164,7 @@ void Matriz::juntaMatriz() {
 		//roda até que o usuario o pare.
 		cout << endl;
 		cout << "Escolha o conjunto que você deseja adicionar: "<< endl;
-		cout << "DIGITE:\n Q para Quadrado\n B para Blinker\n G para Glider\n"
+		cout << "DIGITE:\n B para Blinker\n K para Block\n G para Glider\n"
 		" T para Terminar\n" << endl;
 		cin >> resposta;
 
@@ -165,48 +172,35 @@ void Matriz::juntaMatriz() {
 			resposta = resposta + 32;
 		}
 
-		while (resposta != 'g' && resposta != 'b' && resposta!= 'q' && resposta!= 't') {
-			cout << "\n\nERRO: OS CONJUNTO NÃO FOI ENCONTRADO.\n\nEscreva novamente: ";
+		while (resposta != 'g' && resposta != 'b' && resposta!= 'k' && resposta!= 't') {
+			cout << "\n\nERRO: O CONJUNTO NÃO FOI ENCONTRADO.\n\nEscreva novamente: ";
 			cin >> resposta;
 			cout << endl;
 		}
 
 		if (resposta != 't') {
-			// É escolhida a quantidade
-			cout << "\nQuantos? ";
-			cin >> quantidade;
-
-			for (i = 0; i < quantidade; i++) {
-				// É escolhida a posição
-				cout << "\nDigite a posição:" << endl;
-				cout << " Linha: ";
-				cin >> posicaoX;
-				cout << " Coluna: ";
-				cin >> posicaoY;
-				cout << endl;
-
-				while (posicaoX > tamanho || posicaoX < 0 || posicaoY > tamanho || posicaoY < 0) {
-					cout << "ERRO: A POSIÇÃO NÃO PERTENCE A MATRIZ DO JOGO." << endl;
-					cout << "Escreva novamente:" << endl;
-					cout << " Linha: ";
-					cin >> posicaoX;
-					cout << " Coluna: ";
-					cin >> posicaoY;
-					cout << endl;
-				}
-
-				adicionaElemento(resposta, posicaoX - 1, posicaoY - 1);
-
-				// O jogo é impresso com o novo elemento adicionado
-				printBordaHorizontal();
-				for (linha = 0; linha < tamanho; linha++) {
-					printBordaVertical(linha);
-					for (coluna = 0; coluna < tamanho; coluna++) {
-						cout << getCelula(linha, coluna) << "  ";
-					}
-					cout << endl;
-				}
+			// É escolhida a posição
+			cout << "\nDigite a posição:" << endl;
+			cout << " Linha: ";
+			cin >> posicaoX;
+			if(posicaoX > tamanho || posicaoX < 0 || posicaoX == '\0') {
+				cout << "ERRO: A POSIÇÃO NÃO PERTENCE A MATRIZ DO JOGO." << endl;
+				throw(1);
 			}
+			cout << " Coluna: ";
+			cin >> posicaoY;
+			if (posicaoY > tamanho || posicaoY < 0 || posicaoY == '\0') {
+				cout << "ERRO: A POSIÇÃO NÃO PERTENCE A MATRIZ DO JOGO." << endl;
+				throw(1);
+			}
+			cout << endl;
+
+			adicionaElemento(resposta, posicaoX - 1, posicaoY - 1);
+
+			// O jogo é impresso com o novo elemento adicionado
+			printBordaHorizontal();
+			printJogo();
+			cout << endl;
 		}
 	}
 }
@@ -214,29 +208,35 @@ void Matriz::juntaMatriz() {
 void Matriz::adicionaElemento(char letra, int x, int y){
 	// Este método adiciona os elementos escolhidos a matriz
 
-	if (letra == 'q') {
-		setCelula('o', x, y);
-	    setCelula('o', x, y+1);
-	    setCelula('o', x+1, y);
-	    setCelula('o', x+1, y+1);
+	Blinker * blinker = new Blinker(x, y);
+	Block * block = new Block(x, y);
+	Glider * glider = new Glider(x, y);
 
+	if (letra == 'k') {
+		adicionaElemento(block);
 	}else if(letra == 'b'){
-		setCelula('o', x, y);
-		setCelula('o', x, y+1);
-		setCelula('o', x, y+2);
-
+		adicionaElemento(blinker);
 	}else if(letra == 'g'){
-		setCelula('o', x, y);
-	    setCelula('o', x+1, y+1);
-	    setCelula('o', x+2, y-1);
-	    setCelula('o', x+2, y);
-	    setCelula('o', x+2, y+1);
+		adicionaElemento(glider);
+	}
+}
 
+void Matriz::adicionaElemento(Matriz * m2){
+	// Nesse método, as células vivas da outra matriz são adicionadas
+
+	int linha, coluna;
+
+	for (linha = 0; linha < getTamanho(); linha++) {
+		for (coluna = 0; coluna < getTamanho(); coluna++) {
+			if (m2->getCelula(linha, coluna) == 'o') {
+				setCelula('o', linha, coluna);
+			}
+		}
 	}
 }
 
 void Matriz::printBordaHorizontal(int ger){
-	// Metodo para a impressão das coordenadas das colunas da matriz. Nessa
+	// Método para a impressão das coordenadas das colunas da matriz. Nessa
 	//impressão, é adicionada, ao topo, a geração em que a matriz está.
 
 	int i;
@@ -282,8 +282,8 @@ void Matriz::printBordaVertical(int linha) {
 }
 
 int Matriz::contaVivas(int linha, int coluna){
-	// Este método conta a quantidade de celula vivas ao redor da celula analizada
-	//de forma em que, cada celula viva encontrada é adicionada a variavel "vivas".
+	// Este método conta a quantidade de células vivas ao redor da célula analizada
+	//de forma em que, cada célula viva encontrada é adicionada a variavel "vivas".
 
 	int vivas = 0;
 	if (celula[linha-1][coluna-1] == 'o'){
@@ -317,8 +317,8 @@ int Matriz::contaVivas(int linha, int coluna){
 }
 
 int Matriz::contaVivas(){
-	// Este método, assim como o anterior, conta as celulas vivas, a diferença
-	//é que neste, as celulas contadas são da matriz inteira.
+	// Este método, assim como o anterior, conta as células vivas, a diferença
+	//é que neste, as células contadas são da matriz inteira.
 
 	int vivas = 0, linha, coluna;
 
@@ -331,4 +331,18 @@ int Matriz::contaVivas(){
 	}
 
 	return vivas;
+}
+
+void Matriz::printJogo() {
+	// Método para a impressão do jogo
+
+	int linha, coluna;
+
+	for (linha = 0; linha < tamanho; linha++) {
+		printBordaVertical(linha);
+		for (coluna = 0; coluna < tamanho; coluna++) {
+			cout << getCelula(linha, coluna) << "  ";
+		}
+		cout << endl;
+	}
 }

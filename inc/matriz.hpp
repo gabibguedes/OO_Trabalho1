@@ -27,20 +27,23 @@ class Matriz {
 		void setTamanho(int tamanho);
 
 		// Métodos para diversas formas de montar a matriz
+		void escolheNome();
+		void escolheTamanho();
 		void escreveMatriz();
 		void montaAleatoria();
 		void juntaMatriz();
 		void adicionaElemento(char letra, int x, int y);
+		void adicionaElemento(Matriz * m2);
 
-		// Métodos para a impressão das coordenadas nas bordas da matriz do jogo
+		// Métodos para a impressão
 		void printBordaHorizontal(int ger);
 		void printBordaHorizontal();
 		void printBordaVertical(int linha);
+		void printJogo();
 
-		// Métodos para contar as celulas vivas
+		// Métodos para contar as células vivas
 		int contaVivas(int linha, int coluna);
 		int contaVivas();
-
 };
 
 #endif

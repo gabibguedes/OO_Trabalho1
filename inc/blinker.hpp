@@ -5,6 +5,7 @@
 class Blinker : public Matriz{
 	public:
 		Blinker();
+		Blinker(int x, int y);
 		~Blinker();
 
 };

@@ -5,6 +5,7 @@
 class Glider : public Matriz{
     public:
         Glider();
+        Glider(int x, int y);
         ~Glider();
 };
 
