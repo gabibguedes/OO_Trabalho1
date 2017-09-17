@@ -81,7 +81,7 @@ void Matriz::escolheTamanho(){
 	cin >> tamanho;
 	setTamanho(tamanho);
 
-	if(getTamanho() < 1 || tamanho > 100){
+	if(getTamanho() < 1 || tamanho > 90){
 		cout << "ERRO: O JOGO NÃO SUPORTA UMA MATRIZ DESTE TAMANHO." << endl;
 		throw(1);
 	}
