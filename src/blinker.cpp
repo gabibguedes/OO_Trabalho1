@@ -7,9 +7,9 @@ Blinker::Blinker(){
 	setGeracoes(10);
 
 	// Definições das coordenadas das células vivas do Blinker:
-	setCelula('o', 10, 9);
-	setCelula('o', 10, 10);
-	setCelula('o', 10, 11);
+	setCelula('o', 14, 13);
+	setCelula('o', 14, 14);
+	setCelula('o', 14, 15);
 }
 
 Blinker::Blinker(int x, int y){

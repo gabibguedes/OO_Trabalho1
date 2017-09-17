@@ -7,10 +7,10 @@ Block::Block(){
     setGeracoes(5);
 
     // Definições das coordenadas das células vivas do Block:
-    setCelula('o', 10, 10);
-    setCelula('o', 10, 11);
-    setCelula('o', 11, 10);
-    setCelula('o', 11, 11);
+    setCelula('o', 14, 14);
+    setCelula('o', 14, 15);
+    setCelula('o', 15, 14);
+    setCelula('o', 15, 15);
 }
 Block::Block(int x, int y){
 

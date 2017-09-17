@@ -18,16 +18,16 @@ int main(int argc, char ** argv) {
 	Glider glider;
 	GliderGun gun;
 	Matriz habtat, memoria;
-	int linha, coluna, geracao, contador = 0, vizinhasVivas, tamanho, celulasVivas = 1;
+	int linha, coluna, geracao, contador = 0, vizinhasVivas, celulasVivas = 1;
 	char resposta;
 
 
 	// Menu inicial, onde o usuario escolhe a matriz do jogo
-	cout << "Qual conjunto de celulas você gostaria de rodar?" << endl;
+	cout << "Qual conjunto de células você gostaria de rodar?" << endl;
 
 	cout << "DIGITE:\n B para Blinker\n K para Block\n G para Glider\n"
 	<< " U para Gosper Glider Gun\n A para um conjunto aleatorio\n M para montar"
-	<< " seu próprio conjunto\n E para escrever seu conjunto de celulas\n"
+	<< " seu próprio conjunto\n E para escrever seu conjunto de células\n"
 	<< endl;
 	cin >> resposta;
 	cout << endl;
@@ -70,7 +70,6 @@ int main(int argc, char ** argv) {
 	}
 
 	memoria = habtat;
-	tamanho = habtat.getTamanho();
 
 	if (habtat.getGeracoes() > 0) {
 		// Esse if garante que os próximos passos só serão efetuados se o jogo foi
@@ -81,7 +80,7 @@ int main(int argc, char ** argv) {
 		cout << " - Possui " << habtat.getGeracoes() << " gerações" << endl;
 
 
-		cout << "\nDeseja alterar a quantidade de gerações das suas celulas? (S/N) ";
+		cout << "\nDeseja alterar a quantidade de gerações das suas células? (S/N) ";
 		cin >> resposta;
 		cout << endl;
 
@@ -99,7 +98,7 @@ int main(int argc, char ** argv) {
 			try{
 				habtat.setGeracoes(geracao);
 			}catch(int excecao){
-				cout << "ERRO: NUMERO DE GERAÇÕES INVÁLIDO." << endl;
+				cout << "ERRO: NÚMERO DE GERAÇÕES INVÁLIDO." << endl;
 				habtat.setGeracoes(0);
 			}
 		}
@@ -113,8 +112,8 @@ int main(int argc, char ** argv) {
 		habtat.printBordaHorizontal(contador);
 		habtat.printJogo();
 
-		for(linha = 0; linha < tamanho; linha++){
-			for(coluna = 0; coluna < tamanho; coluna++){
+		for(linha = 0; linha < 100; linha++){
+			for(coluna = 0; coluna < 100; coluna++){
 				// Contagem das células vivas vizinhas
 				vizinhasVivas = memoria.contaVivas(linha,coluna);
 
@@ -136,7 +135,7 @@ int main(int argc, char ** argv) {
 
 		if (celulasVivas == 0) {
 			// O jogo acaba com essa mensagem quando não há mais células
-			cout << endl << "Suas celulas morreram." << endl;
+			cout << endl << "Suas células morreram." << endl;
 		}
 
 		memoria = habtat;

@@ -97,6 +97,7 @@ void Matriz::escreveMatriz(){
 	// Definições iniciais do conjunto:
 	escolheNome();
 	escolheTamanho();
+	setGeracoes(10);
 
 	cout << endl;
 	cout << "Escreva seu conjunto " << getNome() << " da seguinte forma: use 'o' para"
@@ -105,16 +106,16 @@ void Matriz::escreveMatriz(){
 
 	//Determinando células vivas e mortas:
 	printBordaHorizontal();
-	for (linha = 0; linha < tamanho; linha++) {
+	for (linha = 4; linha < getTamanho() + 4; linha++) {
 		printBordaVertical(linha);
-		for (coluna = 0; coluna < tamanho; coluna++) {
+		for (coluna = 4; coluna < getTamanho() + 4; coluna++) {
 			cin >> celula;
 			if (celula == '-') {
-				celula = ' ';
+				setCelula(' ', linha, coluna);
+
 			}else{
-				celula = 'o';
+				setCelula('o', linha, coluna);
 			}
-			setCelula(celula, linha, coluna);
 		}
 	}
 
@@ -135,8 +136,8 @@ void Matriz::montaAleatoria(){
 	escolheTamanho();
 	nome = "Aleatoria";
 
-	for (linha = 1; linha < (getTamanho()-1); linha++) {
-		for (coluna = 1; coluna < (getTamanho()-1); coluna++) {
+	for (linha = 4; linha < (getTamanho() + 4); linha++) {
+		for (coluna = 4; coluna < (getTamanho() + 4); coluna++) {
 			// Um número de 0 a 3 é escolhido aleatoriamente
 			numero = ( rand() % 4 );
 			if (numero == 0) {
@@ -195,7 +196,7 @@ void Matriz::juntaMatriz() {
 			}
 			cout << endl;
 
-			adicionaElemento(resposta, posicaoX - 1, posicaoY - 1);
+			adicionaElemento(resposta, posicaoX + 3, posicaoY + 3);
 
 			// O jogo é impresso com o novo elemento adicionado
 			printBordaHorizontal();
@@ -226,8 +227,8 @@ void Matriz::adicionaElemento(Matriz * m2){
 
 	int linha, coluna;
 
-	for (linha = 0; linha < getTamanho(); linha++) {
-		for (coluna = 0; coluna < getTamanho(); coluna++) {
+	for (linha = 0; linha < 100; linha++) {
+		for (coluna = 0; coluna < 100; coluna++) {
 			if (m2->getCelula(linha, coluna) == 'o') {
 				setCelula('o', linha, coluna);
 			}
@@ -274,10 +275,10 @@ void Matriz::printBordaHorizontal(){
 void Matriz::printBordaVertical(int linha) {
 	// Método para impressão das coordenadas das linhas da matriz.
 
-	if (linha < 9) {
-		cout << (linha+1) << "  ";
+	if ((linha - 3) < 10) {
+		cout << (linha - 3) << "  ";
 	}else{
-		cout << (linha+1) << " ";
+		cout << (linha - 3) << " ";
 	}
 }
 
@@ -322,8 +323,8 @@ int Matriz::contaVivas(){
 
 	int vivas = 0, linha, coluna;
 
-	for (linha = 0; linha < getTamanho(); linha++) {
-		for (coluna = 0; coluna < getTamanho(); coluna++) {
+	for (linha = 4; linha < getTamanho() + 4; linha++) {
+		for (coluna = 4; coluna < getTamanho() + 4; coluna++) {
 			if (getCelula(linha, coluna) == 'o'){
 				vivas++;
 			}
@@ -337,10 +338,11 @@ void Matriz::printJogo() {
 	// Método para a impressão do jogo
 
 	int linha, coluna;
-
-	for (linha = 0; linha < tamanho; linha++) {
+	// OBS.: Foi deixado um espaço de quatro celulas nas bordas q não será impresso.
+	//Essa borda foi deixada para que as regras funcionem nos limites do jogo.
+	for (linha = 4; linha < tamanho + 4; linha++) {
 		printBordaVertical(linha);
-		for (coluna = 0; coluna < tamanho; coluna++) {
+		for (coluna = 4; coluna < tamanho+4; coluna++) {
 			cout << getCelula(linha, coluna) << "  ";
 		}
 		cout << endl;

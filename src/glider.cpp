@@ -7,11 +7,11 @@ Glider::Glider(){
     setGeracoes(60);
 
     // Definições das coordenadas das células vivas do Glider:
-    setCelula('o', 1, 2);
-    setCelula('o', 2, 3);
-    setCelula('o', 3, 1);
-    setCelula('o', 3, 2);
-    setCelula('o', 3, 3);
+    setCelula('o', 5, 6);
+    setCelula('o', 6, 7);
+    setCelula('o', 7, 5);
+    setCelula('o', 7, 6);
+    setCelula('o', 7, 7);
 }
 
 Glider::Glider(int x, int y){
