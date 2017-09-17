@@ -26,7 +26,7 @@ o usuario deve escolher conjuntos para adicionar à matriz, suas opções são: 
 Depois de escolher o usuario deve dar as coordenadas do conjunto. Podem ser escolhidos quantos conjuntos
 quiser. Para terminar de montar basta acessar a opção 'terminar'.
 
-ESCREVA SEU CONJUNNTO DE CÉLULAS:
+ESCREVA SEU CONJUNTO DE CÉLULAS:
 Aqui, nesta opção, o usuario, assim como na opção anterior, determinará o nome e o tamanho do jogo a
 ser montado, e em seguida determinará, celula por celula, qual está viva e qual está morta, escrevendo
 '-' para as células mortas e 'o' para as vivas. Como o usuario irá determinar cada célula, é sugerido
