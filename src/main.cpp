@@ -6,6 +6,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include "matriz.hpp"
 #include "block.hpp"
 #include "blinker.hpp"
@@ -72,8 +73,14 @@ int main(int argc, char ** argv) {
 	memoria = habtat;
 
 	if (habtat.getGeracoes() > 0) {
+		system("clear");
+
 		// Esse if garante que os próximos passos só serão efetuados se o jogo foi
 		//devidamente montado.
+		habtat.printBordaHorizontal();
+		habtat.printJogo();
+		cout << endl;
+
 		cout << endl;
 		cout << "Você escolheu: " <<  habtat.getNome() << endl;
 		cout << " - É uma matriz "<< habtat.getTamanho() << "X" << habtat.getTamanho() << endl;
@@ -107,6 +114,9 @@ int main(int argc, char ** argv) {
 	//Começa o loop do jogo
 	while (contador < habtat.getGeracoes() && celulasVivas > 0) {
 		contador++;
+		// A função system("clear") está sendo ultilizada para limpar a tela do
+		//terminal entre a mudança de gerações
+		system("clear");
 
 		// Impressão do jogo
 		habtat.printBordaHorizontal(contador);

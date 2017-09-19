@@ -99,6 +99,8 @@ void Matriz::escreveMatriz(){
 	escolheTamanho();
 	setGeracoes(10);
 
+	system("clear");
+
 	cout << endl;
 	cout << "Escreva seu conjunto " << getNome() << " da seguinte forma: use 'o' para"
 		<<" celulas vivas e '-' para mortas. Separe as celulas com 2 espaços."<< endl;
@@ -119,11 +121,7 @@ void Matriz::escreveMatriz(){
 		}
 	}
 
-	cout << endl << "Este é o seu novo conjunto de células:"<< endl;
-
-	printBordaHorizontal();
-	printJogo();
-	cout << endl;
+	system("clear");
 }
 
 void Matriz::montaAleatoria(){
@@ -161,6 +159,16 @@ void Matriz::juntaMatriz() {
 	setGeracoes(60);
 
 	while (resposta != 't') {
+
+		system("clear");
+
+		// O jogo é impresso, primeiramente em branco, para depois, mostrar os novos
+		//elementos comforme eles forem sendo adicionados.
+		cout << endl;
+		printBordaHorizontal();
+		printJogo();
+		cout << endl;
+
 		// Neste loop o usuario escolhe seus conjuntos a serem colocados, o loop
 		//roda até que o usuario o pare.
 		cout << endl;
@@ -198,10 +206,6 @@ void Matriz::juntaMatriz() {
 
 			adicionaElemento(resposta, posicaoX + 3, posicaoY + 3);
 
-			// O jogo é impresso com o novo elemento adicionado
-			printBordaHorizontal();
-			printJogo();
-			cout << endl;
 		}
 	}
 }
