@@ -100,6 +100,7 @@ void Matriz::escreveMatriz(){
 	setGeracoes(10);
 
 	system("clear");
+	cout << "JOGO DA VIDA" << endl;
 
 	cout << endl;
 	cout << "Escreva seu conjunto " << getNome() << " da seguinte forma: use 'o' para"
@@ -161,6 +162,7 @@ void Matriz::juntaMatriz() {
 	while (resposta != 't') {
 
 		system("clear");
+		cout << "JOGO DA VIDA" << endl;
 
 		// O jogo é impresso, primeiramente em branco, para depois, mostrar os novos
 		//elementos comforme eles forem sendo adicionados.

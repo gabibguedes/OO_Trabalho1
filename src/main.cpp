@@ -24,6 +24,8 @@ int main(int argc, char ** argv) {
 
 
 	// Menu inicial, onde o usuario escolhe a matriz do jogo
+	system("clear");
+	cout << "BEM VINDO(A) AO JOGO DA VIDA! \n\n" << endl;
 	cout << "Qual conjunto de células você gostaria de rodar?" << endl;
 
 	cout << "DIGITE:\n B para Blinker\n K para Block\n G para Glider\n"
@@ -43,7 +45,7 @@ int main(int argc, char ** argv) {
 		cout << "\n\nERRO: SEU CONJUNTO INICIAL NÃO FOI ENCONTRADO.\n\nEscreva novamente: ";
 		cin >> resposta;
 		cout << endl;
-		
+
 		if (resposta < 97) {
 			// Transforma as letras maiúsculas da resposta do usuario em minúsculas
 			resposta = resposta + 32;
@@ -79,6 +81,8 @@ int main(int argc, char ** argv) {
 
 	if (habtat.getGeracoes() > 0) {
 		system("clear");
+
+		cout << "JOGO DA VIDA\n" << endl;
 
 		// Esse if garante que os próximos passos só serão efetuados se o jogo foi
 		//devidamente montado.
@@ -122,6 +126,7 @@ int main(int argc, char ** argv) {
 		// A função system("clear") está sendo ultilizada para limpar a tela do
 		//terminal entre a mudança de gerações
 		system("clear");
+		cout << "JOGO DA VIDA" << endl;
 
 		// Impressão do jogo
 		habtat.printBordaHorizontal(contador);
