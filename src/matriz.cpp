@@ -224,6 +224,10 @@ void Matriz::adicionaElemento(char letra, int x, int y){
 	}else if(letra == 'g'){
 		adicionaElemento(glider);
 	}
+
+	blinker->~Blinker();
+	block->~Block();
+	glider->~Glider();
 }
 
 void Matriz::adicionaElemento(Matriz * m2){
