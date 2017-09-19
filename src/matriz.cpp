@@ -185,6 +185,10 @@ void Matriz::juntaMatriz() {
 			cout << "\n\nERRO: O CONJUNTO NÃO FOI ENCONTRADO.\n\nEscreva novamente: ";
 			cin >> resposta;
 			cout << endl;
+			if (resposta < 97) {
+				// Transforma as letras maiúsculas da resposta do usuario em minúsculas
+				resposta = resposta + 32;
+			}
 		}
 
 		if (resposta != 't') {

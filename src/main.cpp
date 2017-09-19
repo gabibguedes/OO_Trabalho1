@@ -43,6 +43,11 @@ int main(int argc, char ** argv) {
 		cout << "\n\nERRO: SEU CONJUNTO INICIAL NÃO FOI ENCONTRADO.\n\nEscreva novamente: ";
 		cin >> resposta;
 		cout << endl;
+		
+		if (resposta < 97) {
+			// Transforma as letras maiúsculas da resposta do usuario em minúsculas
+			resposta = resposta + 32;
+		}
 	}
 
 	try{
