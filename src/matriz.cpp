@@ -46,10 +46,6 @@ int Matriz::getGeracoes(){
 
 void Matriz::setGeracoes(int geracoes) {
 	this->geracoes = geracoes;
-
-	if (geracoes < 1 || geracoes == '\0') {
-		throw(1);
-	}
 }
 
 int Matriz::getTamanho(){
@@ -71,22 +67,6 @@ void Matriz::escolheNome(){
 	setNome(nome);
 }
 
-void Matriz::escolheTamanho(){
-	// Este método permite ao usuario escolher o tamanho do conjunto
-	int tamanho;
-
-	cout << "(OBS : Escreva somente 1 número para o TAMANHO, pois a matriz é"
-	<< " quadrada, tem o mesmo número para linhas e colunas)"<< endl;
-	cout << "Tamanho da matriz: ";
-	cin >> tamanho;
-	setTamanho(tamanho);
-
-	if(getTamanho() < 1 || tamanho > 90){
-		cout << "ERRO: O JOGO NÃO SUPORTA UMA MATRIZ DESTE TAMANHO." << endl;
-		throw(1);
-	}
-}
-
 void Matriz::escreveMatriz(){
 	// Este método ajuda o usuario a escrever sua própria matriz do zero,
 	//determinando, uma a uma quais células estão vivas e quais estão mortas
@@ -95,8 +75,6 @@ void Matriz::escreveMatriz(){
 	char celula;
 
 	// Definições iniciais do conjunto:
-	escolheNome();
-	escolheTamanho();
 	setGeracoes(10);
 
 	system("clear");
@@ -132,7 +110,6 @@ void Matriz::montaAleatoria(){
 	int linha, coluna, numero;
 
 	// Definição inicial da matriz:
-	escolheTamanho();
 	setNome("Aleatoria");
 
 	for (linha = 4; linha < (getTamanho() + 4); linha++) {
@@ -155,8 +132,6 @@ void Matriz::juntaMatriz() {
 	int posicaoX, posicaoY;
 
 	//Definição inicial da matriz
-	escolheNome();
-	escolheTamanho();
 	setGeracoes(60);
 
 	while (resposta != 't') {
@@ -199,13 +174,11 @@ void Matriz::juntaMatriz() {
 			cout << " Linha: ";
 			cin >> posicaoX;
 			if(posicaoX > tamanho || posicaoX < 0 || posicaoX == '\0') {
-				cout << "ERRO: A POSIÇÃO NÃO PERTENCE A MATRIZ DO JOGO." << endl;
 				throw(1);
 			}
 			cout << " Coluna: ";
 			cin >> posicaoY;
 			if (posicaoY > tamanho || posicaoY < 0 || posicaoY == '\0') {
-				cout << "ERRO: A POSIÇÃO NÃO PERTENCE A MATRIZ DO JOGO." << endl;
 				throw(1);
 			}
 			cout << endl;

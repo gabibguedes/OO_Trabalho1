@@ -28,7 +28,6 @@ class Matriz {
 
 		// Métodos para diversas formas de montar a matriz
 		void escolheNome();
-		void escolheTamanho();
 		void escreveMatriz();
 		void montaAleatoria();
 		void juntaMatriz();
