@@ -133,7 +133,7 @@ void Matriz::montaAleatoria(){
 
 	// Definição inicial da matriz:
 	escolheTamanho();
-	nome = "Aleatoria";
+	setNome("Aleatoria");
 
 	for (linha = 4; linha < (getTamanho() + 4); linha++) {
 		for (coluna = 4; coluna < (getTamanho() + 4); coluna++) {
@@ -248,6 +248,7 @@ void Matriz::adicionaElemento(Matriz * m2){
 			}
 		}
 	}
+	m2->~Matriz();
 }
 
 void Matriz::printBordaHorizontal(int ger){
