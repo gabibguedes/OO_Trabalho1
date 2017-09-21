@@ -148,7 +148,6 @@ int main(int argc, char ** argv) {
 
 		if (resposta == 's' || resposta == 'S') {
 			// Mudança na quantidade de gerações
-			// Mudança na quantidade de gerações
 			try{
 				geracao = testaGeracao();
 				habtat.setGeracoes(geracao);
